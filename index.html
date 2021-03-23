@@ -1,80 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>three.js example</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<style>
-			body {
-				margin: 0px;
-				background-color: #000000;
-				overflow: hidden;
-			}
-		</style>
-	</head>
-	<body>
 
-		<script type="module">
+<head>
+	<title>three.js example</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<style>
+		body {
+			margin: 0px;
+			background-color: #000000;
+			overflow: hidden;
+		}
+	</style>
+</head>
 
-			import * as THREE from './node_modules/three/build/three.module.js';
+<body>
 
-			var camera, scene, renderer;
+	<script type="module">
 
-            var cube;
+		import * as THREE from './node_modules/three/build/three.module.js';
 
-			init();
-			animate();
+		var camera, scene, renderer;
 
-			function init() {
+		var cube;
 
-				// camera
-				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
-				camera.position.z = 50;
+		init();
+		animate();
 
-				// scene
-				scene = new THREE.Scene();
+		function init() {
 
-				// renderer
-				renderer = new THREE.WebGLRenderer( { antialias: true } );
-				renderer.setPixelRatio( window.devicePixelRatio );
-				renderer.setSize( window.innerWidth, window.innerHeight );
-				document.body.appendChild( renderer.domElement );
+			// camera
+			camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 1000);
+			camera.position.z = 50;
 
-				// event listeners
-				window.addEventListener( 'resize', onWindowResize );
+			// scene
+			scene = new THREE.Scene();
 
-                // cube
-                var geometry = new THREE.BoxGeometry( 10, 10, 10 );
-                var material = new THREE.MeshBasicMaterial( { color: 0x00ffff } );
-                cube = new THREE.Mesh( geometry, material );
-                scene.add( cube );
+			// renderer
+			renderer = new THREE.WebGLRenderer({ antialias: true });
+			renderer.setPixelRatio(window.devicePixelRatio);
+			renderer.setSize(window.innerWidth, window.innerHeight);
+			document.body.appendChild(renderer.domElement);
 
-			}
+			// event listeners
+			window.addEventListener('resize', onWindowResize);
 
-			function onWindowResize() {
+			// cube
+			var geometry = new THREE.BoxGeometry(10, 10, 10);
+			var material = new THREE.MeshBasicMaterial({ color: 0x00ffff });
+			cube = new THREE.Mesh(geometry, material);
+			scene.add(cube);
 
-				const width = window.innerWidth;
-				const height = window.innerHeight;
+		}
 
-				camera.aspect = width / height;
-				camera.updateProjectionMatrix();
+		function onWindowResize() {
 
-				renderer.setSize( width, height );
+			const width = window.innerWidth;
+			const height = window.innerHeight;
 
-			}
+			camera.aspect = width / height;
+			camera.updateProjectionMatrix();
 
-			function animate() {
+			renderer.setSize(width, height);
 
-				requestAnimationFrame( animate );
+		}
 
-                cube.rotation.x += 0.005;
-                cube.rotation.y += 0.01;
+		function animate() {
 
-				renderer.render(scene, camera);
+			requestAnimationFrame(animate);
 
-			}
+			cube.rotation.x += 0.005;
+			cube.rotation.y += 0.01;
 
-		</script>
+			renderer.render(scene, camera);
 
-	</body>
+		}
+
+	</script>
+
+</body>
+
 </html>
